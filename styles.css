@@ -1,0 +1,24 @@
+/* css styles */
+.navbar {
+  background-color: #0f172a !important;
+  border-bottom: 1px solid #0f172a;
+}
+
+.navbar-brand {
+  font-weight: 500 !important;
+  color: #ffffff !important;
+  letter-spacing: -0.02em !important;
+  font-size: 1rem !important;
+}
+
+.navbar a {
+  color: #94a3b8 !important;
+  font-size: 0.88em;
+}
+
+.navbar a:hover {
+  color: #ffffff !important;
+}
+#title-block-header h1 {
+  font-size: 1.8rem !important;
+}

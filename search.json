@@ -1,0 +1,149 @@
+[
+  {
+    "objectID": "posts/python-temelleri/index.html",
+    "href": "posts/python-temelleri/index.html",
+    "title": "Python’a Giriş: Değişkenler, Tipler ve İlk Gerçek Kod",
+    "section": "",
+    "text": "Python öğrenmeye karar verdim ve ilk durağım değişkenler ile veri tipleri oldu. Basit görünüyor ama veri biliminde her şeyin temeli burada. Bu yazıda öğrendiklerimi hem açıklıyor hem de çalışan kodla gösteriyorum."
+  },
+  {
+    "objectID": "posts/python-temelleri/index.html#neden-buradan-başlıyorum",
+    "href": "posts/python-temelleri/index.html#neden-buradan-başlıyorum",
+    "title": "Python’a Giriş: Değişkenler, Tipler ve İlk Gerçek Kod",
+    "section": "",
+    "text": "Python öğrenmeye karar verdim ve ilk durağım değişkenler ile veri tipleri oldu. Basit görünüyor ama veri biliminde her şeyin temeli burada. Bu yazıda öğrendiklerimi hem açıklıyor hem de çalışan kodla gösteriyorum."
+  },
+  {
+    "objectID": "posts/python-temelleri/index.html#değişken-nedir",
+    "href": "posts/python-temelleri/index.html#değişken-nedir",
+    "title": "Python’a Giriş: Değişkenler, Tipler ve İlk Gerçek Kod",
+    "section": "Değişken nedir?",
+    "text": "Değişken nedir?\nDeğişken, bir veriye isim vermektir. Python’da değişken tanımlamak için tip belirtmene gerek yok — bu diğer dillerden (Java, C++) farklı. Sadece isim yaz, = koy, değeri ver.\nisim = \"hilal\"          # str\nyas = 24                # int\nmaas = 8500.75          # float\nveri_bilimci_mi = True  # bool\n\nprint(type(isim))   # &lt;class 'str'&gt;\nprint(type(yas))    # &lt;class 'int'&gt;\n\ntype() fonksiyonu bir değişkenin hangi tipte olduğunu söyler. Veri analizinde tip hatası çok yaygın bir bug kaynağı — bu yüzden erken öğrenmek önemli."
+  },
+  {
+    "objectID": "posts/python-temelleri/index.html#temel-veri-tipi",
+    "href": "posts/python-temelleri/index.html#temel-veri-tipi",
+    "title": "Python’a Giriş: Değişkenler, Tipler ve İlk Gerçek Kod",
+    "section": "4 temel veri tipi",
+    "text": "4 temel veri tipi\n\n\n\nTip\nAçıklama\nÖrnek\n\n\n\n\nstr\nMetin verisi\n\"istanbul\"\n\n\nint\nTam sayı\n24\n\n\nfloat\nOndalıklı sayı\n8500.75\n\n\nbool\nTrue / False\nTrue"
+  },
+  {
+    "objectID": "posts/python-temelleri/index.html#tip-dönüşümü-casting",
+    "href": "posts/python-temelleri/index.html#tip-dönüşümü-casting",
+    "title": "Python’a Giriş: Değişkenler, Tipler ve İlk Gerçek Kod",
+    "section": "Tip dönüşümü — casting",
+    "text": "Tip dönüşümü — casting\nVeri setlerinde sütunlar çoğu zaman yanlış tipte gelir. Mesela sayı olması gereken bir kolon str olarak yüklenmiş olabilir.\nsayi_str = \"42\"            # str olarak geldi\nsayi_int = int(sayi_str)   # int'e çevirdik\n\nprint(sayi_str + \"1\")   # \"421\" — string birleşimi\nprint(sayi_int + 1)     # 43   — matematiksel toplama\nDikkat: Pandas’ta bir kolon sayı gibi görünüp aslında object tipinde olabilir. Bu durumda df[\"kolon\"].astype(float) ile dönüştürmen gerekir — bunu ileriki yazılarda göstereceğim."
+  },
+  {
+    "objectID": "posts/python-temelleri/index.html#bu-yazıda-öğrendiklerim",
+    "href": "posts/python-temelleri/index.html#bu-yazıda-öğrendiklerim",
+    "title": "Python’a Giriş: Değişkenler, Tipler ve İlk Gerçek Kod",
+    "section": "Bu yazıda öğrendiklerim",
+    "text": "Bu yazıda öğrendiklerim\n\nDeğişken tanımlama\n4 temel tip: str, int, float, bool\ntype() fonksiyonu\nTip dönüşümü (casting)\n\nSıradaki yazıda listeler, sözlükler ve döngüler var — Pandas’a geçmeden önce bunları anlamak şart."
+  },
+  {
+    "objectID": "posts/listeler-ve-donguler/index.html",
+    "href": "posts/listeler-ve-donguler/index.html",
+    "title": "Python’da Listeler, Sözlükler ve Döngüler",
+    "section": "",
+    "text": "Pandas’ta bir veri seti üzerinde çalışırken aslında arka planda sürekli listeler ve sözlüklerle uğraşıyorsun. Bu yapıları anlamadan Pandas’ı anlamak çok zor. O yüzden önce bunları geçiyorum."
+  },
+  {
+    "objectID": "posts/listeler-ve-donguler/index.html#neden-bu-konular-önemli",
+    "href": "posts/listeler-ve-donguler/index.html#neden-bu-konular-önemli",
+    "title": "Python’da Listeler, Sözlükler ve Döngüler",
+    "section": "",
+    "text": "Pandas’ta bir veri seti üzerinde çalışırken aslında arka planda sürekli listeler ve sözlüklerle uğraşıyorsun. Bu yapıları anlamadan Pandas’ı anlamak çok zor. O yüzden önce bunları geçiyorum."
+  },
+  {
+    "objectID": "posts/listeler-ve-donguler/index.html#liste-list",
+    "href": "posts/listeler-ve-donguler/index.html#liste-list",
+    "title": "Python’da Listeler, Sözlükler ve Döngüler",
+    "section": "Liste (list)",
+    "text": "Liste (list)\nListe, sıralı ve değiştirilebilir bir veri yapısıdır. Köşeli parantez ile tanımlanır.\nkonular = [\"python\", \"pandas\", \"istatistik\", \"makine öğrenmesi\"]\n\nprint(konular[0])    # python — index 0'dan başlar\nprint(konular[-1])   # makine öğrenmesi — sondan birinci\nprint(len(konular))  # 4 — eleman sayısı\n# eleman ekleme ve silme\nkonular.append(\"derin öğrenme\")   # sona ekler\nkonular.remove(\"istatistik\")      # değere göre siler\nprint(konular)\n# ['python', 'pandas', 'makine öğrenmesi', 'derin öğrenme']"
+  },
+  {
+    "objectID": "posts/listeler-ve-donguler/index.html#sözlük-dict",
+    "href": "posts/listeler-ve-donguler/index.html#sözlük-dict",
+    "title": "Python’da Listeler, Sözlükler ve Döngüler",
+    "section": "Sözlük (dict)",
+    "text": "Sözlük (dict)\nSözlük, anahtar-değer çiftlerinden oluşur. Veri biliminde çok sık karşılaşırsın — JSON verisi, model parametreleri, kolon eşleştirme gibi durumlarda.\nogrenci = {\n    \"isim\": \"hilal\",\n    \"yas\": 24,\n    \"seviye\": \"başlangıç\"\n}\n\nprint(ogrenci[\"isim\"])     # hilal\nprint(ogrenci.get(\"yas\"))  # 24\n\n# yeni anahtar ekleme\nogrenci[\"konu\"] = \"python\"\nprint(ogrenci)"
+  },
+  {
+    "objectID": "posts/listeler-ve-donguler/index.html#döngüler",
+    "href": "posts/listeler-ve-donguler/index.html#döngüler",
+    "title": "Python’da Listeler, Sözlükler ve Döngüler",
+    "section": "Döngüler",
+    "text": "Döngüler\n\nfor döngüsü\nkonular = [\"python\", \"pandas\", \"istatistik\"]\n\nfor konu in konular:\n    print(f\"{konu} öğreniyorum\")\n\n# python öğreniyorum\n# pandas öğreniyorum\n# istatistik öğreniyorum\n\n\nenumerate — index ile birlikte\nfor i, konu in enumerate(konular):\n    print(f\"{i+1}. {konu}\")\n\n# 1. python\n# 2. pandas\n# 3. istatistik\n\nVeri biliminde enumerate çok işe yarar — hem index hem değere aynı anda erişirsin."
+  },
+  {
+    "objectID": "posts/listeler-ve-donguler/index.html#list-comprehension",
+    "href": "posts/listeler-ve-donguler/index.html#list-comprehension",
+    "title": "Python’da Listeler, Sözlükler ve Döngüler",
+    "section": "List comprehension",
+    "text": "List comprehension\nTek satırda liste oluşturmanın Python’a özgü yolu. Pandas ile çalışırken sık kullanırsın.\nsayilar = [1, 2, 3, 4, 5]\n\nkareler = [x**2 for x in sayilar]\nprint(kareler)  # [1, 4, 9, 16, 25]\n\n# koşullu\nciftler = [x for x in sayilar if x % 2 == 0]\nprint(ciftler)  # [2, 4]"
+  },
+  {
+    "objectID": "posts/listeler-ve-donguler/index.html#bu-yazıda-öğrendiklerim",
+    "href": "posts/listeler-ve-donguler/index.html#bu-yazıda-öğrendiklerim",
+    "title": "Python’da Listeler, Sözlükler ve Döngüler",
+    "section": "Bu yazıda öğrendiklerim",
+    "text": "Bu yazıda öğrendiklerim\n\nListe tanımlama, indexleme, eleman ekleme/silme\nSözlük yapısı ve anahtar-değer erişimi\nfor döngüsü ve enumerate\nList comprehension\n\nSıradaki yazıda Pandas geliyor — artık gerçek veri setleriyle çalışmaya başlıyoruz."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Hilal Kerniç Genç",
+    "section": "",
+    "text": "Merhaba, ben Hilal.\nVeri Bilimi dünyasına sıfırdan adım atıyorum. Hiç Python bilmeden başladım — şu an değişkenlerle, veri tipleriyle, ve terminalin bana attığı hata mesajlarıyla boğuşuyorum. Bu blogu tam da bu yüzden açtım: öğrendiklerimi belgelemek, hataları saklamadan göstermek ve ilerleyişimi takip etmek için.\nTeknik not defteri gibi düşün bunu. Her yazı gerçek kod, gerçek hata, gerçek öğrenme. Süslü değil, dürüst.\nŞu an çalıştığım konular: Python temelleri → Pandas → istatistik → makine öğrenmesi. Uzun yol, ama belgeliyorum."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Başlangıç Seviyesinden Uzmanlığa Adım Adım Veri Bilimi:",
+    "section": "",
+    "text": "Pandas’a Giriş: Gerçek Veriyle İlk Adım\n\n\n\npython\n\npandas\n\nveri-analizi\n\n\n\nPandas kütüphanesine giriş — DataFrame, temel işlemler ve ilk veri analizi.\n\n\n\n\n\nApr 30, 2026\n\n\nHilal Kerniç Genç\n\n\n\n\n\n\n\n\n\n\n\n\nPython’da Listeler, Sözlükler ve Döngüler\n\n\n\npython\n\nlisteler\n\ndöngüler\n\n\n\nPandas’a geçmeden önce mutlaka bilinmesi gereken yapılar — listeler, sözlükler ve döngüler.\n\n\n\n\n\nApr 29, 2026\n\n\nHilal Kerniç Genç\n\n\n\n\n\n\n\n\n\n\n\n\nPython’a Giriş: Değişkenler, Tipler ve İlk Gerçek Kod\n\n\n\npython\n\nbaşlangıç\n\nveri-tipleri\n\n\n\nVeri bilimi yolculuğunun ilk yazısı — değişkenler, veri tipleri ve tip dönüşümü.\n\n\n\n\n\nApr 28, 2026\n\n\nHilal Kerniç Genç\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/pandas-giris/index.html",
+    "href": "posts/pandas-giris/index.html",
+    "title": "Pandas’a Giriş: Gerçek Veriyle İlk Adım",
+    "section": "",
+    "text": "Pandas, Python’da veri analizi için kullanılan en temel kütüphanedir. Excel’i Python’da çalıştırmak gibi düşünebilirsin — ama çok daha güçlü. Veri biliminde neredeyse her projede kullanılır.\nimport pandas as pd"
+  },
+  {
+    "objectID": "posts/pandas-giris/index.html#pandas-nedir",
+    "href": "posts/pandas-giris/index.html#pandas-nedir",
+    "title": "Pandas’a Giriş: Gerçek Veriyle İlk Adım",
+    "section": "",
+    "text": "Pandas, Python’da veri analizi için kullanılan en temel kütüphanedir. Excel’i Python’da çalıştırmak gibi düşünebilirsin — ama çok daha güçlü. Veri biliminde neredeyse her projede kullanılır.\nimport pandas as pd"
+  },
+  {
+    "objectID": "posts/pandas-giris/index.html#dataframe-nedir",
+    "href": "posts/pandas-giris/index.html#dataframe-nedir",
+    "title": "Pandas’a Giriş: Gerçek Veriyle İlk Adım",
+    "section": "DataFrame nedir?",
+    "text": "DataFrame nedir?\nDataFrame, satır ve sütunlardan oluşan bir veri tablosudur. Tıpkı Excel’deki bir sayfa gibi.\nimport pandas as pd\n\nveri = {\n    \"isim\": [\"hilal\", \"ali\", \"ayşe\"],\n    \"yas\": [24, 28, 22],\n    \"sehir\": [\"istanbul\", \"ankara\", \"izmir\"]\n}\n\ndf = pd.DataFrame(veri)\nprint(df)"
+  },
+  {
+    "objectID": "posts/pandas-giris/index.html#temel-işlemler",
+    "href": "posts/pandas-giris/index.html#temel-işlemler",
+    "title": "Pandas’a Giriş: Gerçek Veriyle İlk Adım",
+    "section": "Temel işlemler",
+    "text": "Temel işlemler\n\nVeriyi tanımak\ndf.shape        # (3, 3) — satır, sütun sayısı\ndf.dtypes       # her sütunun tipi\ndf.head()       # ilk 5 satır\ndf.tail()       # son 5 satır\ndf.describe()   # istatistiksel özet\ndf.info()       # genel bilgi\n\n\nSütun seçmek\ndf[\"isim\"]           # tek sütun — Series döner\ndf[[\"isim\", \"yas\"]]  # birden fazla sütun — DataFrame döner\n\n\nSatır filtrelemek\ngencler = df[df[\"yas\"] &lt; 25]\nprint(gencler)\n\n#     isim  yas    sehir\n# 0  hilal   24  istanbul\n# 2   ayşe   22     izmir"
+  },
+  {
+    "objectID": "posts/pandas-giris/index.html#eksik-veri-kontrolü",
+    "href": "posts/pandas-giris/index.html#eksik-veri-kontrolü",
+    "title": "Pandas’a Giriş: Gerçek Veriyle İlk Adım",
+    "section": "Eksik veri kontrolü",
+    "text": "Eksik veri kontrolü\ndf.isnull().sum()   # her sütundaki eksik değer sayısı\ndf.dropna()         # eksik satırları sil\ndf.fillna(0)        # eksik değerleri 0 ile doldur\n\nVeri temizleme, veri bilimcinin zamanının %80’ini alır. Pandas olmadan bu iş çok daha zor olurdu."
+  },
+  {
+    "objectID": "posts/pandas-giris/index.html#bu-yazıda-öğrendiklerim",
+    "href": "posts/pandas-giris/index.html#bu-yazıda-öğrendiklerim",
+    "title": "Pandas’a Giriş: Gerçek Veriyle İlk Adım",
+    "section": "Bu yazıda öğrendiklerim",
+    "text": "Bu yazıda öğrendiklerim\n\nPandas kurulumu ve import\nDataFrame oluşturma\nshape, dtypes, head(), describe(), info()\nSütun seçme ve satır filtreleme\nEksik veri kontrolü\n\nSıradaki yazıda gerçek bir veri seti indirip Kaggle’dan EDA yapacağım."
+  }
+]

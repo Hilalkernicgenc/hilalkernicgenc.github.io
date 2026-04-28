@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Veri Serüvenim</title>
+<link>https://Hilalkernicgenc.github.io/</link>
+<atom:link href="https://Hilalkernicgenc.github.io/index.xml" rel="self" type="application/rss+xml"/>
+<description>Sıfırdan veri bilimcisi olma yolculuğum — Python, analiz ve her şey.</description>
+<generator>quarto-1.9.37</generator>
+<lastBuildDate>Wed, 29 Apr 2026 21:00:00 GMT</lastBuildDate>
+<item>
+  <title>Pandas’a Giriş: Gerçek Veriyle İlk Adım</title>
+  <dc:creator>Hilal Kerniç Genç</dc:creator>
+  <link>https://Hilalkernicgenc.github.io/posts/pandas-giris/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="pandas-nedir" class="level2">
+<h2 class="anchored" data-anchor-id="pandas-nedir">Pandas nedir?</h2>
+<p>Pandas, Python’da veri analizi için kullanılan en temel kütüphanedir. Excel’i Python’da çalıştırmak gibi düşünebilirsin — ama çok daha güçlü. Veri biliminde neredeyse her projede kullanılır.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> pd</span></code></pre></div></div>
+</section>
+<section id="dataframe-nedir" class="level2">
+<h2 class="anchored" data-anchor-id="dataframe-nedir">DataFrame nedir?</h2>
+<p>DataFrame, satır ve sütunlardan oluşan bir veri tablosudur. Tıpkı Excel’deki bir sayfa gibi.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> pd</span>
+<span id="cb2-2"></span>
+<span id="cb2-3">veri <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {</span>
+<span id="cb2-4">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"isim"</span>: [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"hilal"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ali"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ayşe"</span>],</span>
+<span id="cb2-5">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"yas"</span>: [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">24</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">28</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">22</span>],</span>
+<span id="cb2-6">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"sehir"</span>: [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"istanbul"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ankara"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"izmir"</span>]</span>
+<span id="cb2-7">}</span>
+<span id="cb2-8"></span>
+<span id="cb2-9">df <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.DataFrame(veri)</span>
+<span id="cb2-10"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(df)</span></code></pre></div></div>
+</section>
+<section id="temel-işlemler" class="level2">
+<h2 class="anchored" data-anchor-id="temel-işlemler">Temel işlemler</h2>
+<section id="veriyi-tanımak" class="level3">
+<h3 class="anchored" data-anchor-id="veriyi-tanımak">Veriyi tanımak</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">df.shape        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># (3, 3) — satır, sütun sayısı</span></span>
+<span id="cb3-2">df.dtypes       <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># her sütunun tipi</span></span>
+<span id="cb3-3">df.head()       <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ilk 5 satır</span></span>
+<span id="cb3-4">df.tail()       <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># son 5 satır</span></span>
+<span id="cb3-5">df.describe()   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># istatistiksel özet</span></span>
+<span id="cb3-6">df.info()       <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># genel bilgi</span></span></code></pre></div></div>
+</section>
+<section id="sütun-seçmek" class="level3">
+<h3 class="anchored" data-anchor-id="sütun-seçmek">Sütun seçmek</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"isim"</span>]           <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># tek sütun — Series döner</span></span>
+<span id="cb4-2">df[[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"isim"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"yas"</span>]]  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># birden fazla sütun — DataFrame döner</span></span></code></pre></div></div>
+</section>
+<section id="satır-filtrelemek" class="level3">
+<h3 class="anchored" data-anchor-id="satır-filtrelemek">Satır filtrelemek</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">gencler <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> df[df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"yas"</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">25</span>]</span>
+<span id="cb5-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(gencler)</span>
+<span id="cb5-3"></span>
+<span id="cb5-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#     isim  yas    sehir</span></span>
+<span id="cb5-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 0  hilal   24  istanbul</span></span>
+<span id="cb5-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2   ayşe   22     izmir</span></span></code></pre></div></div>
+</section>
+</section>
+<section id="eksik-veri-kontrolü" class="level2">
+<h2 class="anchored" data-anchor-id="eksik-veri-kontrolü">Eksik veri kontrolü</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1">df.isnull().<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">sum</span>()   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># her sütundaki eksik değer sayısı</span></span>
+<span id="cb6-2">df.dropna()         <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># eksik satırları sil</span></span>
+<span id="cb6-3">df.fillna(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># eksik değerleri 0 ile doldur</span></span></code></pre></div></div>
+<blockquote class="blockquote">
+<p>Veri temizleme, veri bilimcinin zamanının %80’ini alır. Pandas olmadan bu iş çok daha zor olurdu.</p>
+</blockquote>
+</section>
+<section id="bu-yazıda-öğrendiklerim" class="level2">
+<h2 class="anchored" data-anchor-id="bu-yazıda-öğrendiklerim">Bu yazıda öğrendiklerim</h2>
+<ul>
+<li>Pandas kurulumu ve import</li>
+<li>DataFrame oluşturma</li>
+<li><code>shape</code>, <code>dtypes</code>, <code>head()</code>, <code>describe()</code>, <code>info()</code></li>
+<li>Sütun seçme ve satır filtreleme</li>
+<li>Eksik veri kontrolü</li>
+</ul>
+<p>Sıradaki yazıda gerçek bir veri seti indirip Kaggle’dan EDA yapacağım.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>python</category>
+  <category>pandas</category>
+  <category>veri-analizi</category>
+  <guid>https://Hilalkernicgenc.github.io/posts/pandas-giris/</guid>
+  <pubDate>Wed, 29 Apr 2026 21:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Python’da Listeler, Sözlükler ve Döngüler</title>
+  <dc:creator>Hilal Kerniç Genç</dc:creator>
+  <link>https://Hilalkernicgenc.github.io/posts/listeler-ve-donguler/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="neden-bu-konular-önemli" class="level2">
+<h2 class="anchored" data-anchor-id="neden-bu-konular-önemli">Neden bu konular önemli?</h2>
+<p>Pandas’ta bir veri seti üzerinde çalışırken aslında arka planda sürekli listeler ve sözlüklerle uğraşıyorsun. Bu yapıları anlamadan Pandas’ı anlamak çok zor. O yüzden önce bunları geçiyorum.</p>
+</section>
+<section id="liste-list" class="level2">
+<h2 class="anchored" data-anchor-id="liste-list">Liste (list)</h2>
+<p>Liste, sıralı ve değiştirilebilir bir veri yapısıdır. Köşeli parantez ile tanımlanır.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1">konular <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"python"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pandas"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"istatistik"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"makine öğrenmesi"</span>]</span>
+<span id="cb1-2"></span>
+<span id="cb1-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(konular[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>])    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># python — index 0'dan başlar</span></span>
+<span id="cb1-4"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(konular[<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>])   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># makine öğrenmesi — sondan birinci</span></span>
+<span id="cb1-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(konular))  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 4 — eleman sayısı</span></span></code></pre></div></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># eleman ekleme ve silme</span></span>
+<span id="cb2-2">konular.append(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"derin öğrenme"</span>)   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># sona ekler</span></span>
+<span id="cb2-3">konular.remove(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"istatistik"</span>)      <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># değere göre siler</span></span>
+<span id="cb2-4"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(konular)</span>
+<span id="cb2-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ['python', 'pandas', 'makine öğrenmesi', 'derin öğrenme']</span></span></code></pre></div></div>
+</section>
+<section id="sözlük-dict" class="level2">
+<h2 class="anchored" data-anchor-id="sözlük-dict">Sözlük (dict)</h2>
+<p>Sözlük, anahtar-değer çiftlerinden oluşur. Veri biliminde çok sık karşılaşırsın — JSON verisi, model parametreleri, kolon eşleştirme gibi durumlarda.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">ogrenci <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {</span>
+<span id="cb3-2">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"isim"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"hilal"</span>,</span>
+<span id="cb3-3">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"yas"</span>: <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">24</span>,</span>
+<span id="cb3-4">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"seviye"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"başlangıç"</span></span>
+<span id="cb3-5">}</span>
+<span id="cb3-6"></span>
+<span id="cb3-7"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(ogrenci[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"isim"</span>])     <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># hilal</span></span>
+<span id="cb3-8"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(ogrenci.get(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"yas"</span>))  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 24</span></span>
+<span id="cb3-9"></span>
+<span id="cb3-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># yeni anahtar ekleme</span></span>
+<span id="cb3-11">ogrenci[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"konu"</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"python"</span></span>
+<span id="cb3-12"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(ogrenci)</span></code></pre></div></div>
+</section>
+<section id="döngüler" class="level2">
+<h2 class="anchored" data-anchor-id="döngüler">Döngüler</h2>
+<section id="for-döngüsü" class="level3">
+<h3 class="anchored" data-anchor-id="for-döngüsü">for döngüsü</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">konular <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"python"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pandas"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"istatistik"</span>]</span>
+<span id="cb4-2"></span>
+<span id="cb4-3"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> konu <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> konular:</span>
+<span id="cb4-4">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>konu<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> öğreniyorum"</span>)</span>
+<span id="cb4-5"></span>
+<span id="cb4-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># python öğreniyorum</span></span>
+<span id="cb4-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># pandas öğreniyorum</span></span>
+<span id="cb4-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># istatistik öğreniyorum</span></span></code></pre></div></div>
+</section>
+<section id="enumerate-index-ile-birlikte" class="level3">
+<h3 class="anchored" data-anchor-id="enumerate-index-ile-birlikte">enumerate — index ile birlikte</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i, konu <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">enumerate</span>(konular):</span>
+<span id="cb5-2">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>i<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">. </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>konu<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb5-3"></span>
+<span id="cb5-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. python</span></span>
+<span id="cb5-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. pandas</span></span>
+<span id="cb5-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. istatistik</span></span></code></pre></div></div>
+<blockquote class="blockquote">
+<p>Veri biliminde <code>enumerate</code> çok işe yarar — hem index hem değere aynı anda erişirsin.</p>
+</blockquote>
+</section>
+</section>
+<section id="list-comprehension" class="level2">
+<h2 class="anchored" data-anchor-id="list-comprehension">List comprehension</h2>
+<p>Tek satırda liste oluşturmanın Python’a özgü yolu. Pandas ile çalışırken sık kullanırsın.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1">sayilar <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>]</span>
+<span id="cb6-2"></span>
+<span id="cb6-3">kareler <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> x <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> sayilar]</span>
+<span id="cb6-4"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(kareler)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># [1, 4, 9, 16, 25]</span></span>
+<span id="cb6-5"></span>
+<span id="cb6-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># koşullu</span></span>
+<span id="cb6-7">ciftler <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [x <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> x <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> sayilar <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]</span>
+<span id="cb6-8"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(ciftler)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># [2, 4]</span></span></code></pre></div></div>
+</section>
+<section id="bu-yazıda-öğrendiklerim" class="level2">
+<h2 class="anchored" data-anchor-id="bu-yazıda-öğrendiklerim">Bu yazıda öğrendiklerim</h2>
+<ul>
+<li>Liste tanımlama, indexleme, eleman ekleme/silme</li>
+<li>Sözlük yapısı ve anahtar-değer erişimi</li>
+<li><code>for</code> döngüsü ve <code>enumerate</code></li>
+<li>List comprehension</li>
+</ul>
+<p>Sıradaki yazıda Pandas geliyor — artık gerçek veri setleriyle çalışmaya başlıyoruz.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>python</category>
+  <category>listeler</category>
+  <category>döngüler</category>
+  <guid>https://Hilalkernicgenc.github.io/posts/listeler-ve-donguler/</guid>
+  <pubDate>Tue, 28 Apr 2026 21:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Python’a Giriş: Değişkenler, Tipler ve İlk Gerçek Kod</title>
+  <dc:creator>Hilal Kerniç Genç</dc:creator>
+  <link>https://Hilalkernicgenc.github.io/posts/python-temelleri/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="neden-buradan-başlıyorum" class="level2">
+<h2 class="anchored" data-anchor-id="neden-buradan-başlıyorum">Neden buradan başlıyorum?</h2>
+<p>Python öğrenmeye karar verdim ve ilk durağım değişkenler ile veri tipleri oldu. Basit görünüyor ama veri biliminde her şeyin temeli burada. Bu yazıda öğrendiklerimi hem açıklıyor hem de çalışan kodla gösteriyorum.</p>
+</section>
+<section id="değişken-nedir" class="level2">
+<h2 class="anchored" data-anchor-id="değişken-nedir">Değişken nedir?</h2>
+<p>Değişken, bir veriye isim vermektir. Python’da değişken tanımlamak için tip belirtmene gerek yok — bu diğer dillerden (Java, C++) farklı. Sadece isim yaz, <code>=</code> koy, değeri ver.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1">isim <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"hilal"</span>          <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># str</span></span>
+<span id="cb1-2">yas <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">24</span>                <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># int</span></span>
+<span id="cb1-3">maas <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8500.75</span>          <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># float</span></span>
+<span id="cb1-4">veri_bilimci_mi <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># bool</span></span>
+<span id="cb1-5"></span>
+<span id="cb1-6"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">type</span>(isim))   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># &lt;class 'str'&gt;</span></span>
+<span id="cb1-7"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">type</span>(yas))    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># &lt;class 'int'&gt;</span></span></code></pre></div></div>
+<blockquote class="blockquote">
+<p><code>type()</code> fonksiyonu bir değişkenin hangi tipte olduğunu söyler. Veri analizinde tip hatası çok yaygın bir bug kaynağı — bu yüzden erken öğrenmek önemli.</p>
+</blockquote>
+</section>
+<section id="temel-veri-tipi" class="level2">
+<h2 class="anchored" data-anchor-id="temel-veri-tipi">4 temel veri tipi</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tip</th>
+<th>Açıklama</th>
+<th>Örnek</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>str</code></td>
+<td>Metin verisi</td>
+<td><code>"istanbul"</code></td>
+</tr>
+<tr class="even">
+<td><code>int</code></td>
+<td>Tam sayı</td>
+<td><code>24</code></td>
+</tr>
+<tr class="odd">
+<td><code>float</code></td>
+<td>Ondalıklı sayı</td>
+<td><code>8500.75</code></td>
+</tr>
+<tr class="even">
+<td><code>bool</code></td>
+<td>True / False</td>
+<td><code>True</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tip-dönüşümü-casting" class="level2">
+<h2 class="anchored" data-anchor-id="tip-dönüşümü-casting">Tip dönüşümü — casting</h2>
+<p>Veri setlerinde sütunlar çoğu zaman yanlış tipte gelir. Mesela sayı olması gereken bir kolon <code>str</code> olarak yüklenmiş olabilir.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">sayi_str <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"42"</span>            <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># str olarak geldi</span></span>
+<span id="cb2-2">sayi_int <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">int</span>(sayi_str)   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># int'e çevirdik</span></span>
+<span id="cb2-3"></span>
+<span id="cb2-4"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(sayi_str <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"1"</span>)   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># "421" — string birleşimi</span></span>
+<span id="cb2-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(sayi_int <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)     <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 43   — matematiksel toplama</span></span></code></pre></div></div>
+<p><strong>Dikkat:</strong> Pandas’ta bir kolon sayı gibi görünüp aslında <code>object</code> tipinde olabilir. Bu durumda <code>df["kolon"].astype(float)</code> ile dönüştürmen gerekir — bunu ileriki yazılarda göstereceğim.</p>
+</section>
+<section id="bu-yazıda-öğrendiklerim" class="level2">
+<h2 class="anchored" data-anchor-id="bu-yazıda-öğrendiklerim">Bu yazıda öğrendiklerim</h2>
+<ul>
+<li>Değişken tanımlama</li>
+<li>4 temel tip: <code>str</code>, <code>int</code>, <code>float</code>, <code>bool</code></li>
+<li><code>type()</code> fonksiyonu</li>
+<li>Tip dönüşümü (casting)</li>
+</ul>
+<p>Sıradaki yazıda listeler, sözlükler ve döngüler var — Pandas’a geçmeden önce bunları anlamak şart.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>python</category>
+  <category>başlangıç</category>
+  <category>veri-tipleri</category>
+  <guid>https://Hilalkernicgenc.github.io/posts/python-temelleri/</guid>
+  <pubDate>Mon, 27 Apr 2026 21:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>
