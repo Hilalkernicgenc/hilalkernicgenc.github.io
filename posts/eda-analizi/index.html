@@ -244,6 +244,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Şu ana kadar her şey sayıydı. Ama gerçek hayatta bulgularını grafikle sunman gerekiyor — patrona, müşteriye, ekibine. Ancak bu grafiği matplotlib kütüphanesi ile ekleyeceğiz bu sebeple ilk etapta kütüphaneyi yükleyelim.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install matplotlib</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Ardından bu kodu çalıştıralım;</p>
+<section id="grafik-1-sınıf-ve-cinsiyete-göre-hayatta-kalma-oranı" class="level2">
+<h2 class="anchored" data-anchor-id="grafik-1-sınıf-ve-cinsiyete-göre-hayatta-kalma-oranı">Grafik 1 — Sınıf ve Cinsiyete Göre Hayatta Kalma Oranı</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df.groupby([<span class="st">'Pclass'</span>, <span class="st">'Sex'</span>])[<span class="st">'Survived'</span>].mean().unstack().plot(</span>
@@ -254,10 +256,80 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Hayatta Kalma Oranı'</span>)</span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="grafik-2-hayatta-kalma-dağılımı" class="level2">
+<h2 class="anchored" data-anchor-id="grafik-2-hayatta-kalma-dağılımı">Grafik 2 — Hayatta kalma dağılımı</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Survived"</span>].value_counts().plot(kind<span class="op">=</span><span class="st">"bar"</span>, color<span class="op">=</span>[<span class="st">"#e74c3c"</span>, <span class="st">"#2ecc71"</span>])</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Hayatta Kalma Dağılımı"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>plt.xticks([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="st">"Hayatta Kalmadı"</span>, <span class="st">"Hayatta Kaldı"</span>], rotation<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Kişi Sayısı"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>549 kişi hayatta kalmadı, 342 kişi kurtuldu.</p>
+</section>
+<section id="grafik-3-cinsiyete-göre-hayatta-kalma" class="level2">
+<h2 class="anchored" data-anchor-id="grafik-3-cinsiyete-göre-hayatta-kalma">Grafik 3 — Cinsiyete göre hayatta kalma</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"Sex"</span>, y<span class="op">=</span><span class="st">"Survived"</span>, palette<span class="op">=</span><span class="st">"Set2"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Cinsiyete Göre Hayatta Kalma Oranı"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Hayatta Kalma Oranı"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Seaborn tek satırda hem gruplayıp hem ortalama alıyor — Matplotlib’den çok daha hızlı.</p>
+</section>
+<section id="grafik-4-yolcu-sınıfına-göre-hayatta-kalma" class="level2">
+<h2 class="anchored" data-anchor-id="grafik-4-yolcu-sınıfına-göre-hayatta-kalma">Grafik 4 — Yolcu sınıfına göre hayatta kalma</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"Pclass"</span>, y<span class="op">=</span><span class="st">"Survived"</span>, palette<span class="op">=</span><span class="st">"Blues_d"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Yolcu Sınıfına Göre Hayatta Kalma"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Yolcu Sınıfı"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Hayatta Kalma Oranı"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="grafik-5-yaş-dağılımı" class="level2">
+<h2 class="anchored" data-anchor-id="grafik-5-yaş-dağılımı">Grafik 5 — Yaş dağılımı</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Age"</span>].dropna().plot(kind<span class="op">=</span><span class="st">"hist"</span>, bins<span class="op">=</span><span class="dv">30</span>, color<span class="op">=</span><span class="st">"#3498db"</span>, edgecolor<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Yolcuların Yaş Dağılımı"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Yaş"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Kişi Sayısı"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Yaş ortalaması 29. Genç yolcular ağırlıkta.</p>
+</section>
+<section id="matplotlib-mi-seaborn-mu" class="level2">
+<h2 class="anchored" data-anchor-id="matplotlib-mi-seaborn-mu">Matplotlib mi, Seaborn mu?</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Matplotlib</th>
+<th>Seaborn</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Kontrol</td>
+<td>Tam kontrol</td>
+<td>Daha az ama kolay</td>
+</tr>
+<tr class="even">
+<td>Kod uzunluğu</td>
+<td>Uzun</td>
+<td>Kısa</td>
+</tr>
+<tr class="odd">
+<td>Görünüm</td>
+<td>Sade</td>
+<td>Şık</td>
+</tr>
+<tr class="even">
+<td>Kullanım</td>
+<td>Her grafik tipi</td>
+<td>İstatistiksel grafikler</td>
+</tr>
+</tbody>
+</table>
+<p>İkisini birlikte kullanmak en iyi yaklaşım — Seaborn ile çiz, Matplotlib ile özelleştir.</p>
 <p>Burada önemli olan kodları ezberlemek değil hangi fonksiyon veya kütüphaneyi nerede kullanacağını bilmek bu sebeble ne kadar pratik yaparsan o kadar konuya hakim olursun.</p>
 <p>Pandas’ı sindirmeden SQL’e geçersen ikisi birbirine karışır.Bir sonraki yazıda SQL ’ değineceğim.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

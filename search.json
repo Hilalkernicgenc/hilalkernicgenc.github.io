@@ -109,7 +109,49 @@
     "href": "posts/eda-analizi/index.html",
     "title": "Titanic Veri Seti ile İlk Analiz",
     "section": "",
-    "text": "İlk veri setini yükledik, şimdi bu veriyi tanıyalım. 891 yolcu, 12 özellik yeni bir hücre aç (Alt + Enter) ve şunu çalıştır:\n# Kaç satır, kaç sütun var?\ndf.shape\nbir alt satıra tıklayalım.\n# Sütunlar ne anlama geliyor, veri tipleri ne?\ndf.info()\n# Sayısal sütunların özeti\ndf.describe()\nŞimdi analiz edelim: 891 yolcu var ve 3 sütunda eksik veri var:\nAge –&gt; 177 eksik –&gt; Yolcuların yaşı bilinmiyor\nCabin –&gt; 687 eksik –&gt; Çok fazla — neredeyse boş\nEmbarked –&gt; 2 eksik –&gt; Az, kolay düzelir\nVeri Temizlemeye Başlayalım 3 farklı strateji var eksik veriler için:\nDoldur → Age gibi sütunlarda ortalama/medyan ile\nSil → Cabin gibi çok boş sütunları\nEn sık değerle doldur → Embarked gibi kategorik sütunlarda\nHadi sırayla yapalım. Yeni hücreye yapıştır:\n# Önce eksikleri sayalım\ndf.isnull().sum()\n# Age → medyan ile doldur (ortalama yerine medyan kullanırız çünkü aykırı değerlere dayanıklı)\ndf['Age'] = df['Age'].fillna(df['Age'].median())\n\n# Cabin → çok boş, silelim\ndf = df.drop(columns=['Cabin'])\n\n# Embarked → en sık değerle doldur\ndf['Embarked'] = df['Embarked'].fillna(df['Embarked'].mode()[0])\n\n# Kontrol edelim — sıfır görmemiz lazım\ndf.isnull().sum()\nİlk veri temizliğini tamamladık! Az önce ne yaptığımıza bakalım:\n177 eksik yaş → medyan ile doldurduk 687 eksik kabin → işe yaramaz, sildik 2 eksik liman → en sık değerle doldurduk\nBu 3 teknik, gerçek projelerin %80’inde karşına çıkacak.\nKadınların hayatta kalma oranı kaç? Erkeklerin? Sence neden bu fark var?\nVeriye bakarak yorum yapmak, veri biliminin en kritik becerisi haydi birlikte yorumlamaya başlayalım.\n\n# Kaç kişi hayatta kaldı?\ndf['Survived'].value_counts()\n# Cinsiyete göre hayatta kalma oranı\ndf.groupby('Sex')['Survived'].mean()\n# Sınıfa göre hayatta kalma — zenginler daha mı şanslıydı?\ndf.groupby('Pclass')['Survived'].mean()\nAz önce şunları yaptık; ✅Veri yükledik ✅ Eksik verileri temizledik ✅ groupby ile analiz yaptık ✅ Veriden anlamlı yorum çıkardık\nBu tam olarak bir veri analistinin günlük işi.\nŞu ana kadar her şey sayıydı. Ama gerçek hayatta bulgularını grafikle sunman gerekiyor — patrona, müşteriye, ekibine. Ancak bu grafiği matplotlib kütüphanesi ile ekleyeceğiz bu sebeple ilk etapta kütüphaneyi yükleyelim.\n!pip install matplotlib\nArdından bu kodu çalıştıralım;\nimport matplotlib.pyplot as plt\n\ndf.groupby(['Pclass', 'Sex'])['Survived'].mean().unstack().plot(\n    kind='bar', \n    figsize=(8,5),\n    title='Sınıf ve Cinsiyete Göre Hayatta Kalma Oranı'\n)\nplt.ylabel('Hayatta Kalma Oranı')\nplt.xticks(rotation=0)\nplt.show()\nBurada önemli olan kodları ezberlemek değil hangi fonksiyon veya kütüphaneyi nerede kullanacağını bilmek bu sebeble ne kadar pratik yaparsan o kadar konuya hakim olursun.\nPandas’ı sindirmeden SQL’e geçersen ikisi birbirine karışır.Bir sonraki yazıda SQL ’ değineceğim."
+    "text": "İlk veri setini yükledik, şimdi bu veriyi tanıyalım. 891 yolcu, 12 özellik yeni bir hücre aç (Alt + Enter) ve şunu çalıştır:\nbir alt satıra tıklayalım.\nŞimdi analiz edelim: 891 yolcu var ve 3 sütunda eksik veri var:\nAge –&gt; 177 eksik –&gt; Yolcuların yaşı bilinmiyor\nCabin –&gt; 687 eksik –&gt; Çok fazla — neredeyse boş\nEmbarked –&gt; 2 eksik –&gt; Az, kolay düzelir\nVeri Temizlemeye Başlayalım 3 farklı strateji var eksik veriler için:\nDoldur → Age gibi sütunlarda ortalama/medyan ile\nSil → Cabin gibi çok boş sütunları\nEn sık değerle doldur → Embarked gibi kategorik sütunlarda\nHadi sırayla yapalım. Yeni hücreye yapıştır:\nİlk veri temizliğini tamamladık! Az önce ne yaptığımıza bakalım:\n177 eksik yaş → medyan ile doldurduk 687 eksik kabin → işe yaramaz, sildik 2 eksik liman → en sık değerle doldurduk\nBu 3 teknik, gerçek projelerin %80’inde karşına çıkacak.\nKadınların hayatta kalma oranı kaç? Erkeklerin? Sence neden bu fark var?\nVeriye bakarak yorum yapmak, veri biliminin en kritik becerisi haydi birlikte yorumlamaya başlayalım.\nAz önce şunları yaptık; ✅Veri yükledik ✅ Eksik verileri temizledik ✅ groupby ile analiz yaptık ✅ Veriden anlamlı yorum çıkardık\nBu tam olarak bir veri analistinin günlük işi.\nŞu ana kadar her şey sayıydı. Ama gerçek hayatta bulgularını grafikle sunman gerekiyor — patrona, müşteriye, ekibine. Ancak bu grafiği matplotlib kütüphanesi ile ekleyeceğiz bu sebeple ilk etapta kütüphaneyi yükleyelim.\nArdından bu kodu çalıştıralım;"
+  },
+  {
+    "objectID": "posts/eda-analizi/index.html#grafik-1-sınıf-ve-cinsiyete-göre-hayatta-kalma-oranı",
+    "href": "posts/eda-analizi/index.html#grafik-1-sınıf-ve-cinsiyete-göre-hayatta-kalma-oranı",
+    "title": "Titanic Veri Seti ile İlk Analiz",
+    "section": "Grafik 1 — Sınıf ve Cinsiyete Göre Hayatta Kalma Oranı",
+    "text": "Grafik 1 — Sınıf ve Cinsiyete Göre Hayatta Kalma Oranı\nimport matplotlib.pyplot as plt\n\ndf.groupby(['Pclass', 'Sex'])['Survived'].mean().unstack().plot(\n    kind='bar', \n    figsize=(8,5),\n    title='Sınıf ve Cinsiyete Göre Hayatta Kalma Oranı'\n)\nplt.ylabel('Hayatta Kalma Oranı')\nplt.xticks(rotation=0)\nplt.show()"
+  },
+  {
+    "objectID": "posts/eda-analizi/index.html#grafik-2-hayatta-kalma-dağılımı",
+    "href": "posts/eda-analizi/index.html#grafik-2-hayatta-kalma-dağılımı",
+    "title": "Titanic Veri Seti ile İlk Analiz",
+    "section": "Grafik 2 — Hayatta kalma dağılımı",
+    "text": "Grafik 2 — Hayatta kalma dağılımı\ndf[\"Survived\"].value_counts().plot(kind=\"bar\", color=[\"#e74c3c\", \"#2ecc71\"])\nplt.title(\"Hayatta Kalma Dağılımı\")\nplt.xticks([0, 1], [\"Hayatta Kalmadı\", \"Hayatta Kaldı\"], rotation=0)\nplt.ylabel(\"Kişi Sayısı\")\nplt.show()\n549 kişi hayatta kalmadı, 342 kişi kurtuldu."
+  },
+  {
+    "objectID": "posts/eda-analizi/index.html#grafik-3-cinsiyete-göre-hayatta-kalma",
+    "href": "posts/eda-analizi/index.html#grafik-3-cinsiyete-göre-hayatta-kalma",
+    "title": "Titanic Veri Seti ile İlk Analiz",
+    "section": "Grafik 3 — Cinsiyete göre hayatta kalma",
+    "text": "Grafik 3 — Cinsiyete göre hayatta kalma\nsns.barplot(data=df, x=\"Sex\", y=\"Survived\", palette=\"Set2\")\nplt.title(\"Cinsiyete Göre Hayatta Kalma Oranı\")\nplt.ylabel(\"Hayatta Kalma Oranı\")\nplt.show()\nSeaborn tek satırda hem gruplayıp hem ortalama alıyor — Matplotlib’den çok daha hızlı."
+  },
+  {
+    "objectID": "posts/eda-analizi/index.html#grafik-4-yolcu-sınıfına-göre-hayatta-kalma",
+    "href": "posts/eda-analizi/index.html#grafik-4-yolcu-sınıfına-göre-hayatta-kalma",
+    "title": "Titanic Veri Seti ile İlk Analiz",
+    "section": "Grafik 4 — Yolcu sınıfına göre hayatta kalma",
+    "text": "Grafik 4 — Yolcu sınıfına göre hayatta kalma\nsns.barplot(data=df, x=\"Pclass\", y=\"Survived\", palette=\"Blues_d\")\nplt.title(\"Yolcu Sınıfına Göre Hayatta Kalma\")\nplt.xlabel(\"Yolcu Sınıfı\")\nplt.ylabel(\"Hayatta Kalma Oranı\")\nplt.show()"
+  },
+  {
+    "objectID": "posts/eda-analizi/index.html#grafik-5-yaş-dağılımı",
+    "href": "posts/eda-analizi/index.html#grafik-5-yaş-dağılımı",
+    "title": "Titanic Veri Seti ile İlk Analiz",
+    "section": "Grafik 5 — Yaş dağılımı",
+    "text": "Grafik 5 — Yaş dağılımı\ndf[\"Age\"].dropna().plot(kind=\"hist\", bins=30, color=\"#3498db\", edgecolor=\"white\")\nplt.title(\"Yolcuların Yaş Dağılımı\")\nplt.xlabel(\"Yaş\")\nplt.ylabel(\"Kişi Sayısı\")\nplt.show()\nYaş ortalaması 29. Genç yolcular ağırlıkta."
+  },
+  {
+    "objectID": "posts/eda-analizi/index.html#matplotlib-mi-seaborn-mu",
+    "href": "posts/eda-analizi/index.html#matplotlib-mi-seaborn-mu",
+    "title": "Titanic Veri Seti ile İlk Analiz",
+    "section": "Matplotlib mi, Seaborn mu?",
+    "text": "Matplotlib mi, Seaborn mu?\n\n\n\n\nMatplotlib\nSeaborn\n\n\n\n\nKontrol\nTam kontrol\nDaha az ama kolay\n\n\nKod uzunluğu\nUzun\nKısa\n\n\nGörünüm\nSade\nŞık\n\n\nKullanım\nHer grafik tipi\nİstatistiksel grafikler\n\n\n\nİkisini birlikte kullanmak en iyi yaklaşım — Seaborn ile çiz, Matplotlib ile özelleştir.\nBurada önemli olan kodları ezberlemek değil hangi fonksiyon veya kütüphaneyi nerede kullanacağını bilmek bu sebeble ne kadar pratik yaparsan o kadar konuya hakim olursun.\nPandas’ı sindirmeden SQL’e geçersen ikisi birbirine karışır.Bir sonraki yazıda SQL ’ değineceğim."
   },
   {
     "objectID": "posts/pandas-giris/index.html",

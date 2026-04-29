@@ -130,6 +130,8 @@ font-style: inherit;">'Survived'</span>].mean()</span></code></pre></div></div>
 background-color: null;
 font-style: inherit;">!</span>pip install matplotlib</span></code></pre></div></div>
 <p>Ardından bu kodu çalıştıralım;</p>
+<section id="grafik-1-sınıf-ve-cinsiyete-göre-hayatta-kalma-oranı" class="level2">
+<h2 class="anchored" data-anchor-id="grafik-1-sınıf-ve-cinsiyete-göre-hayatta-kalma-oranı">Grafik 1 — Sınıf ve Cinsiyete Göre Hayatta Kalma Oranı</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
@@ -170,10 +172,170 @@ font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>)</span>
 <span id="cb10-10">plt.show()</span></code></pre></div></div>
+</section>
+<section id="grafik-2-hayatta-kalma-dağılımı" class="level2">
+<h2 class="anchored" data-anchor-id="grafik-2-hayatta-kalma-dağılımı">Grafik 2 — Hayatta kalma dağılımı</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1">df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Survived"</span>].value_counts().plot(kind<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bar"</span>, color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#e74c3c"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#2ecc71"</span>])</span>
+<span id="cb11-2">plt.title(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Hayatta Kalma Dağılımı"</span>)</span>
+<span id="cb11-3">plt.xticks([<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>], [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Hayatta Kalmadı"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Hayatta Kaldı"</span>], rotation<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb11-4">plt.ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Kişi Sayısı"</span>)</span>
+<span id="cb11-5">plt.show()</span></code></pre></div></div>
+<p>549 kişi hayatta kalmadı, 342 kişi kurtuldu.</p>
+</section>
+<section id="grafik-3-cinsiyete-göre-hayatta-kalma" class="level2">
+<h2 class="anchored" data-anchor-id="grafik-3-cinsiyete-göre-hayatta-kalma">Grafik 3 — Cinsiyete göre hayatta kalma</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1">sns.barplot(data<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>df, x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sex"</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Survived"</span>, palette<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Set2"</span>)</span>
+<span id="cb12-2">plt.title(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Cinsiyete Göre Hayatta Kalma Oranı"</span>)</span>
+<span id="cb12-3">plt.ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Hayatta Kalma Oranı"</span>)</span>
+<span id="cb12-4">plt.show()</span></code></pre></div></div>
+<p>Seaborn tek satırda hem gruplayıp hem ortalama alıyor — Matplotlib’den çok daha hızlı.</p>
+</section>
+<section id="grafik-4-yolcu-sınıfına-göre-hayatta-kalma" class="level2">
+<h2 class="anchored" data-anchor-id="grafik-4-yolcu-sınıfına-göre-hayatta-kalma">Grafik 4 — Yolcu sınıfına göre hayatta kalma</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1">sns.barplot(data<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>df, x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Pclass"</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Survived"</span>, palette<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Blues_d"</span>)</span>
+<span id="cb13-2">plt.title(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Yolcu Sınıfına Göre Hayatta Kalma"</span>)</span>
+<span id="cb13-3">plt.xlabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Yolcu Sınıfı"</span>)</span>
+<span id="cb13-4">plt.ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Hayatta Kalma Oranı"</span>)</span>
+<span id="cb13-5">plt.show()</span></code></pre></div></div>
+</section>
+<section id="grafik-5-yaş-dağılımı" class="level2">
+<h2 class="anchored" data-anchor-id="grafik-5-yaş-dağılımı">Grafik 5 — Yaş dağılımı</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1">df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Age"</span>].dropna().plot(kind<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"hist"</span>, bins<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span>, color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#3498db"</span>, edgecolor<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>)</span>
+<span id="cb14-2">plt.title(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Yolcuların Yaş Dağılımı"</span>)</span>
+<span id="cb14-3">plt.xlabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Yaş"</span>)</span>
+<span id="cb14-4">plt.ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Kişi Sayısı"</span>)</span>
+<span id="cb14-5">plt.show()</span></code></pre></div></div>
+<p>Yaş ortalaması 29. Genç yolcular ağırlıkta.</p>
+</section>
+<section id="matplotlib-mi-seaborn-mu" class="level2">
+<h2 class="anchored" data-anchor-id="matplotlib-mi-seaborn-mu">Matplotlib mi, Seaborn mu?</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Matplotlib</th>
+<th>Seaborn</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Kontrol</td>
+<td>Tam kontrol</td>
+<td>Daha az ama kolay</td>
+</tr>
+<tr class="even">
+<td>Kod uzunluğu</td>
+<td>Uzun</td>
+<td>Kısa</td>
+</tr>
+<tr class="odd">
+<td>Görünüm</td>
+<td>Sade</td>
+<td>Şık</td>
+</tr>
+<tr class="even">
+<td>Kullanım</td>
+<td>Her grafik tipi</td>
+<td>İstatistiksel grafikler</td>
+</tr>
+</tbody>
+</table>
+<p>İkisini birlikte kullanmak en iyi yaklaşım — Seaborn ile çiz, Matplotlib ile özelleştir.</p>
 <p>Burada önemli olan kodları ezberlemek değil hangi fonksiyon veya kütüphaneyi nerede kullanacağını bilmek bu sebeble ne kadar pratik yaparsan o kadar konuya hakim olursun.</p>
 <p>Pandas’ı sindirmeden SQL’e geçersen ikisi birbirine karışır.Bir sonraki yazıda SQL ’ değineceğim.</p>
 
 
+</section>
 
  ]]></description>
   <category>python</category>
