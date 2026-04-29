@@ -10,9 +10,181 @@
 <atom:link href="https://Hilalkernicgenc.github.io/index.xml" rel="self" type="application/rss+xml"/>
 <description>Sıfırdan veri bilimcisi olma yolculuğum — Python, analiz ve her şey.</description>
 <generator>quarto-1.9.37</generator>
-<lastBuildDate>Wed, 29 Apr 2026 21:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 30 Apr 2026 21:00:00 GMT</lastBuildDate>
 <item>
-  <title>Pandas’a Giriş: Gerçek Veriyle İlk Adım</title>
+  <title>Titanic Veri Seti ile İlk Analiz</title>
+  <dc:creator>Hilal Kerniç Genç</dc:creator>
+  <link>https://Hilalkernicgenc.github.io/posts/eda-analizi/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>İlk veri setini yükledik, şimdi bu veriyi tanıyalım. 891 yolcu, 12 özellik yeni bir hücre aç (Alt + Enter) ve şunu çalıştır:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Kaç satır, kaç sütun var?</span></span>
+<span id="cb1-2">df.shape</span></code></pre></div></div>
+<p>bir alt satıra tıklayalım.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Sütunlar ne anlama geliyor, veri tipleri ne?</span></span>
+<span id="cb2-2">df.info()</span></code></pre></div></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Sayısal sütunların özeti</span></span>
+<span id="cb3-2">df.describe()</span></code></pre></div></div>
+<p>Şimdi analiz edelim: 891 yolcu var ve 3 sütunda eksik veri var:</p>
+<p>Age –&gt; 177 eksik –&gt; Yolcuların yaşı bilinmiyor</p>
+<p>Cabin –&gt; 687 eksik –&gt; Çok fazla — neredeyse boş</p>
+<p>Embarked –&gt; 2 eksik –&gt; Az, kolay düzelir</p>
+<p>Veri Temizlemeye Başlayalım 3 farklı strateji var eksik veriler için:</p>
+<p>Doldur → Age gibi sütunlarda ortalama/medyan ile</p>
+<p>Sil → Cabin gibi çok boş sütunları</p>
+<p>En sık değerle doldur → Embarked gibi kategorik sütunlarda</p>
+<p>Hadi sırayla yapalım. Yeni hücreye yapıştır:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Önce eksikleri sayalım</span></span>
+<span id="cb4-2">df.isnull().<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">sum</span>()</span></code></pre></div></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Age → medyan ile doldur (ortalama yerine medyan kullanırız çünkü aykırı değerlere dayanıklı)</span></span>
+<span id="cb5-2">df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Age'</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Age'</span>].fillna(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Age'</span>].median())</span>
+<span id="cb5-3"></span>
+<span id="cb5-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Cabin → çok boş, silelim</span></span>
+<span id="cb5-5">df <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> df.drop(columns<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Cabin'</span>])</span>
+<span id="cb5-6"></span>
+<span id="cb5-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Embarked → en sık değerle doldur</span></span>
+<span id="cb5-8">df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Embarked'</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Embarked'</span>].fillna(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Embarked'</span>].mode()[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>])</span>
+<span id="cb5-9"></span>
+<span id="cb5-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Kontrol edelim — sıfır görmemiz lazım</span></span>
+<span id="cb5-11">df.isnull().<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">sum</span>()</span></code></pre></div></div>
+<p>İlk veri temizliğini tamamladık! Az önce ne yaptığımıza bakalım:</p>
+<p>177 eksik yaş → medyan ile doldurduk 687 eksik kabin → işe yaramaz, sildik 2 eksik liman → en sık değerle doldurduk</p>
+<p>Bu 3 teknik, gerçek projelerin %80’inde karşına çıkacak.</p>
+<p>Kadınların hayatta kalma oranı kaç? Erkeklerin? Sence neden bu fark var?</p>
+<p>Veriye bakarak yorum yapmak, veri biliminin en kritik becerisi haydi birlikte yorumlamaya başlayalım.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"></span>
+<span id="cb6-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Kaç kişi hayatta kaldı?</span></span>
+<span id="cb6-3">df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Survived'</span>].value_counts()</span></code></pre></div></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Cinsiyete göre hayatta kalma oranı</span></span>
+<span id="cb7-2">df.groupby(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Sex'</span>)[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Survived'</span>].mean()</span></code></pre></div></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Sınıfa göre hayatta kalma — zenginler daha mı şanslıydı?</span></span>
+<span id="cb8-2">df.groupby(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Pclass'</span>)[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Survived'</span>].mean()</span></code></pre></div></div>
+<p>Az önce şunları yaptık; ✅Veri yükledik ✅ Eksik verileri temizledik ✅ groupby ile analiz yaptık ✅ Veriden anlamlı yorum çıkardık</p>
+<p>Bu tam olarak bir veri analistinin günlük işi.</p>
+<p>Şu ana kadar her şey sayıydı. Ama gerçek hayatta bulgularını grafikle sunman gerekiyor — patrona, müşteriye, ekibine. Ancak bu grafiği matplotlib kütüphanesi ile ekleyeceğiz bu sebeple ilk etapta kütüphaneyi yükleyelim.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>pip install matplotlib</span></code></pre></div></div>
+<p>Ardından bu kodu çalıştıralım;</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> plt</span>
+<span id="cb10-2"></span>
+<span id="cb10-3">df.groupby([<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Pclass'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Sex'</span>])[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Survived'</span>].mean().unstack().plot(</span>
+<span id="cb10-4">    kind<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'bar'</span>, </span>
+<span id="cb10-5">    figsize<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>),</span>
+<span id="cb10-6">    title<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Sınıf ve Cinsiyete Göre Hayatta Kalma Oranı'</span></span>
+<span id="cb10-7">)</span>
+<span id="cb10-8">plt.ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Hayatta Kalma Oranı'</span>)</span>
+<span id="cb10-9">plt.xticks(rotation<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb10-10">plt.show()</span></code></pre></div></div>
+<p>Burada önemli olan kodları ezberlemek değil hangi fonksiyon veya kütüphaneyi nerede kullanacağını bilmek bu sebeble ne kadar pratik yaparsan o kadar konuya hakim olursun.</p>
+<p>Pandas’ı sindirmeden SQL’e geçersen ikisi birbirine karışır.Bir sonraki yazıda SQL ’ değineceğim.</p>
+
+
+
+ ]]></description>
+  <category>python</category>
+  <category>pandas</category>
+  <category>eda</category>
+  <category>veri-analizi</category>
+  <guid>https://Hilalkernicgenc.github.io/posts/eda-analizi/</guid>
+  <pubDate>Thu, 30 Apr 2026 21:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Pandas Nedir ve Nasıl Yüklenir?</title>
   <dc:creator>Hilal Kerniç Genç</dc:creator>
   <link>https://Hilalkernicgenc.github.io/posts/pandas-giris/</link>
   <description><![CDATA[ 
@@ -23,154 +195,64 @@
 
 <section id="pandas-nedir" class="level2">
 <h2 class="anchored" data-anchor-id="pandas-nedir">Pandas nedir?</h2>
-<p>Pandas, Python’da veri analizi için kullanılan en temel kütüphanedir. Excel’i Python’da çalıştırmak gibi düşünebilirsin — ama çok daha güçlü. Veri biliminde neredeyse her projede kullanılır.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">as</span> pd</span></code></pre></div></div>
+<p>Pandas’ı şöyle düşün: Excel’in programlanabilir versiyonu. Binlerce satır veriyi saniyeler içinde analiz edebiliyorsun. Veri okuma, temizleme, filtreleme, gruplama… veri biliminde yaptığın işlerin büyük çoğunluğu Pandas ile yapılır. Önce ortamını kuralım, sonra ilk gerçek veriyi birlikte analiz edeceğiz.</p>
 </section>
-<section id="dataframe-nedir" class="level2">
-<h2 class="anchored" data-anchor-id="dataframe-nedir">DataFrame nedir?</h2>
-<p>DataFrame, satır ve sütunlardan oluşan bir veri tablosudur. Tıpkı Excel’deki bir sayfa gibi.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
+<section id="adım-1-kurulum" class="level2">
+<h2 class="anchored" data-anchor-id="adım-1-kurulum">Adım 1 — Kurulum</h2>
+<p>Terminali aç ve yaz:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">as</span> pd</span>
-<span id="cb2-2"></span>
-<span id="cb2-3">veri <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> {</span>
-<span id="cb2-4">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"isim"</span>: [<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"hilal"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"ali"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"ayşe"</span>],</span>
-<span id="cb2-5">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"yas"</span>: [<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">24</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">28</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">22</span>],</span>
-<span id="cb2-6">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"sehir"</span>: [<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"istanbul"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"ankara"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"izmir"</span>]</span>
-<span id="cb2-7">}</span>
-<span id="cb2-8"></span>
-<span id="cb2-9">df <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> pd.DataFrame(veri)</span>
-<span id="cb2-10"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(df)</span></code></pre></div></div>
+font-style: inherit;">pip</span> install pandas jupyter</span></code></pre></div></div>
 </section>
-<section id="temel-işlemler" class="level2">
-<h2 class="anchored" data-anchor-id="temel-işlemler">Temel işlemler</h2>
-<section id="veriyi-tanımak" class="level3">
-<h3 class="anchored" data-anchor-id="veriyi-tanımak">Veriyi tanımak</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">df.shape        <span class="co" style="color: #5E5E5E;
+<section id="adım-2-jupyterı-aç" class="level2">
+<h2 class="anchored" data-anchor-id="adım-2-jupyterı-aç">Adım 2 — Jupyter’ı aç:</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;"># (3, 3) — satır, sütun sayısı</span></span>
-<span id="cb3-2">df.dtypes       <span class="co" style="color: #5E5E5E;
+font-style: inherit;">jupyter</span> notebook</span></code></pre></div></div>
+<p>Eğer ‘jupyter’ is not recognized hatası alırsan, şunu dene:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;"># her sütunun tipi</span></span>
-<span id="cb3-3">df.head()       <span class="co" style="color: #5E5E5E;
+font-style: inherit;">python</span> <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;"># ilk 5 satır</span></span>
-<span id="cb3-4">df.tail()       <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># son 5 satır</span></span>
-<span id="cb3-5">df.describe()   <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># istatistiksel özet</span></span>
-<span id="cb3-6">df.info()       <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># genel bilgi</span></span></code></pre></div></div>
+font-style: inherit;">-m</span> jupyter notebook</span></code></pre></div></div>
+<p>Tarayıcında bir sekme açılacak. Oradan “New → Python 3” de ve yeni bir notebook oluştur.</p>
 </section>
-<section id="sütun-seçmek" class="level3">
-<h3 class="anchored" data-anchor-id="sütun-seçmek">Sütun seçmek</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">df[<span class="st" style="color: #20794D;
+<section id="adım-3-ilk-kodunu-yaz" class="level2">
+<h2 class="anchored" data-anchor-id="adım-3-ilk-kodunu-yaz">Adım 3 — İlk kodunu yaz:</h2>
+<p>Açılan jupyter sayfasında sağ üstte “New” butonuna tıkla → “Python 3 (ipykernel)” seç Yeni bir notebook açılacak. Açılınca şu kodu yapıştır ve Shift + Enter ile çalıştır:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;">"isim"</span>]           <span class="co" style="color: #5E5E5E;
+font-style: inherit;">import</span> pandas as pd</span>
+<span id="cb4-2"></span>
+<span id="cb4-3"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;"># tek sütun — Series döner</span></span>
-<span id="cb4-2">df[[<span class="st" style="color: #20794D;
+font-style: inherit;">df</span> = pd.read_csv<span class="er" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">"isim"</span>, <span class="st" style="color: #20794D;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"yas"</span>]]  <span class="co" style="color: #5E5E5E;
+font-style: inherit;">"https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"</span><span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;"># birden fazla sütun — DataFrame döner</span></span></code></pre></div></div>
-</section>
-<section id="satır-filtrelemek" class="level3">
-<h3 class="anchored" data-anchor-id="satır-filtrelemek">Satır filtrelemek</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">gencler <span class="op" style="color: #5E5E5E;
+font-weight: bold;
+font-style: inherit;">)</span></span>
+<span id="cb4-4"></span>
+<span id="cb4-5"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">=</span> df[df[<span class="st" style="color: #20794D;
+font-style: inherit;">df.head()</span></span></code></pre></div></div>
+<p>Ekranda bir tablo belirdecek tebrikler,ilk veri setini yükledin — bu Titanic yolcu verisi.</p>
+<p>Sorun yaşarsan ;</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;">"yas"</span>] <span class="op" style="color: #5E5E5E;
+font-style: inherit;">Veri</span> setini Kaggle<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
+font-style: inherit;">'dan indirebilirsin: </span></span>
+<span id="cb5-2"><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">25</span>]</span>
-<span id="cb5-2"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(gencler)</span>
-<span id="cb5-3"></span>
-<span id="cb5-4"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#     isim  yas    sehir</span></span>
-<span id="cb5-5"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># 0  hilal   24  istanbul</span></span>
-<span id="cb5-6"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># 2   ayşe   22     izmir</span></span></code></pre></div></div>
-</section>
-</section>
-<section id="eksik-veri-kontrolü" class="level2">
-<h2 class="anchored" data-anchor-id="eksik-veri-kontrolü">Eksik veri kontrolü</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1">df.isnull().<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">sum</span>()   <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># her sütundaki eksik değer sayısı</span></span>
-<span id="cb6-2">df.dropna()         <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># eksik satırları sil</span></span>
-<span id="cb6-3">df.fillna(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>)        <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># eksik değerleri 0 ile doldur</span></span></code></pre></div></div>
-<blockquote class="blockquote">
-<p>Veri temizleme, veri bilimcinin zamanının %80’ini alır. Pandas olmadan bu iş çok daha zor olurdu.</p>
-</blockquote>
-</section>
-<section id="bu-yazıda-öğrendiklerim" class="level2">
-<h2 class="anchored" data-anchor-id="bu-yazıda-öğrendiklerim">Bu yazıda öğrendiklerim</h2>
-<ul>
-<li>Pandas kurulumu ve import</li>
-<li>DataFrame oluşturma</li>
-<li><code>shape</code>, <code>dtypes</code>, <code>head()</code>, <code>describe()</code>, <code>info()</code></li>
-<li>Sütun seçme ve satır filtreleme</li>
-<li>Eksik veri kontrolü</li>
-</ul>
-<p>Sıradaki yazıda gerçek bir veri seti indirip Kaggle’dan EDA yapacağım.</p>
+font-style: inherit;">[Titanic Dataset](https://www.kaggle.com/datasets/yasserh/titanic-dataset)</span></span></code></pre></div></div>
+<p>NOT :</p>
+<p>Pandas = Python kütüphanesi (veri analizi, tablo işlemleri için)</p>
+<p>Jupyter = kod yazıp çalıştırdığın ortam (notebook)</p>
+<p>Yani Pandas’ı kullanmak için bir ortam gerekir; bu ortam Jupyter olabilir, ama klasik .py dosyası (VS Code, PyCharm, terminal) da olabilir. Öğrenirken ve analiz yaparken → Jupyter + Pandas (çok daha rahat) Otomatik bir iş çalıştıracaksan → .py dosyası (Jupyter gerekmez) Yani “Pandas’ı Jupyter ile kullanmalı mıyım?” sorusunun cevabı: Eğer veriyi keşfediyor ve görselleştiriyorsan EVET, eğer bir pipeline yazıyorsan HAYIR (ondan bağımsız olarak Pandas kullanılır).Şu an öğrenme aşamasındaysan → Jupyter ile başla, Pandas kullanmayı öğren.Daha sonra scripte geçersin.</p>
+<p>Sıradaki yazıda bu veriyi analiz edeceğim.</p>
 
 
 </section>
@@ -178,7 +260,7 @@ font-style: inherit;"># eksik değerleri 0 ile doldur</span></span></code></pre>
  ]]></description>
   <category>python</category>
   <category>pandas</category>
-  <category>veri-analizi</category>
+  <category>kurulum</category>
   <guid>https://Hilalkernicgenc.github.io/posts/pandas-giris/</guid>
   <pubDate>Wed, 29 Apr 2026 21:00:00 GMT</pubDate>
 </item>

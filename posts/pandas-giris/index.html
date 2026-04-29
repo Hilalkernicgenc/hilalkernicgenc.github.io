@@ -8,9 +8,9 @@
 
 <meta name="author" content="Hilal Kerniç Genç">
 <meta name="dcterms.date" content="2026-04-30">
-<meta name="description" content="Pandas kütüphanesine giriş — DataFrame, temel işlemler ve ilk veri analizi.">
+<meta name="description" content="Veri biliminin vazgeçilmez kütüphanesi Pandas’ı sıfırdan kuruyoruz.">
 
-<title>Pandas’a Giriş: Gerçek Veriyle İlk Adım – Veri Serüvenim</title>
+<title>Pandas Nedir ve Nasıl Yüklenir? – Veri Serüvenim</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -150,16 +150,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Pandas’a Giriş: Gerçek Veriyle İlk Adım</h1>
+      <h1 class="title">Pandas Nedir ve Nasıl Yüklenir?</h1>
                   <div>
         <div class="description">
-          Pandas kütüphanesine giriş — DataFrame, temel işlemler ve ilk veri analizi.
+          Veri biliminin vazgeçilmez kütüphanesi Pandas’ı sıfırdan kuruyoruz.
         </div>
       </div>
                           <div class="quarto-categories">
                 <div class="quarto-category">python</div>
                 <div class="quarto-category">pandas</div>
-                <div class="quarto-category">veri-analizi</div>
+                <div class="quarto-category">kurulum</div>
               </div>
                   </div>
   </div>
@@ -198,68 +198,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="pandas-nedir" class="level2">
 <h2 class="anchored" data-anchor-id="pandas-nedir">Pandas nedir?</h2>
-<p>Pandas, Python’da veri analizi için kullanılan en temel kütüphanedir. Excel’i Python’da çalıştırmak gibi düşünebilirsin — ama çok daha güçlü. Veri biliminde neredeyse her projede kullanılır.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Pandas’ı şöyle düşün: Excel’in programlanabilir versiyonu. Binlerce satır veriyi saniyeler içinde analiz edebiliyorsun. Veri okuma, temizleme, filtreleme, gruplama… veri biliminde yaptığın işlerin büyük çoğunluğu Pandas ile yapılır. Önce ortamını kuralım, sonra ilk gerçek veriyi birlikte analiz edeceğiz.</p>
 </section>
-<section id="dataframe-nedir" class="level2">
-<h2 class="anchored" data-anchor-id="dataframe-nedir">DataFrame nedir?</h2>
-<p>DataFrame, satır ve sütunlardan oluşan bir veri tablosudur. Tıpkı Excel’deki bir sayfa gibi.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>veri <span class="op">=</span> {</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"isim"</span>: [<span class="st">"hilal"</span>, <span class="st">"ali"</span>, <span class="st">"ayşe"</span>],</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"yas"</span>: [<span class="dv">24</span>, <span class="dv">28</span>, <span class="dv">22</span>],</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sehir"</span>: [<span class="st">"istanbul"</span>, <span class="st">"ankara"</span>, <span class="st">"izmir"</span>]</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(veri)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="adım-1-kurulum" class="level2">
+<h2 class="anchored" data-anchor-id="adım-1-kurulum">Adım 1 — Kurulum</h2>
+<p>Terminali aç ve yaz:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install pandas jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="temel-işlemler" class="level2">
-<h2 class="anchored" data-anchor-id="temel-işlemler">Temel işlemler</h2>
-<section id="veriyi-tanımak" class="level3">
-<h3 class="anchored" data-anchor-id="veriyi-tanımak">Veriyi tanımak</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.shape        <span class="co"># (3, 3) — satır, sütun sayısı</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df.dtypes       <span class="co"># her sütunun tipi</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df.head()       <span class="co"># ilk 5 satır</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df.tail()       <span class="co"># son 5 satır</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>df.describe()   <span class="co"># istatistiksel özet</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>df.info()       <span class="co"># genel bilgi</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="adım-2-jupyterı-aç" class="level2">
+<h2 class="anchored" data-anchor-id="adım-2-jupyterı-aç">Adım 2 — Jupyter’ı aç:</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> notebook</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Eğer ‘jupyter’ is not recognized hatası alırsan, şunu dene:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> jupyter notebook</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Tarayıcında bir sekme açılacak. Oradan “New → Python 3” de ve yeni bir notebook oluştur.</p>
 </section>
-<section id="sütun-seçmek" class="level3">
-<h3 class="anchored" data-anchor-id="sütun-seçmek">Sütun seçmek</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"isim"</span>]           <span class="co"># tek sütun — Series döner</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"isim"</span>, <span class="st">"yas"</span>]]  <span class="co"># birden fazla sütun — DataFrame döner</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="satır-filtrelemek" class="level3">
-<h3 class="anchored" data-anchor-id="satır-filtrelemek">Satır filtrelemek</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>gencler <span class="op">=</span> df[df[<span class="st">"yas"</span>] <span class="op">&lt;</span> <span class="dv">25</span>]</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gencler)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#     isim  yas    sehir</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 0  hilal   24  istanbul</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2   ayşe   22     izmir</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-<section id="eksik-veri-kontrolü" class="level2">
-<h2 class="anchored" data-anchor-id="eksik-veri-kontrolü">Eksik veri kontrolü</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df.isnull().<span class="bu">sum</span>()   <span class="co"># her sütundaki eksik değer sayısı</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df.dropna()         <span class="co"># eksik satırları sil</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>df.fillna(<span class="dv">0</span>)        <span class="co"># eksik değerleri 0 ile doldur</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<blockquote class="blockquote">
-<p>Veri temizleme, veri bilimcinin zamanının %80’ini alır. Pandas olmadan bu iş çok daha zor olurdu.</p>
-</blockquote>
-</section>
-<section id="bu-yazıda-öğrendiklerim" class="level2">
-<h2 class="anchored" data-anchor-id="bu-yazıda-öğrendiklerim">Bu yazıda öğrendiklerim</h2>
-<ul>
-<li>Pandas kurulumu ve import</li>
-<li>DataFrame oluşturma</li>
-<li><code>shape</code>, <code>dtypes</code>, <code>head()</code>, <code>describe()</code>, <code>info()</code></li>
-<li>Sütun seçme ve satır filtreleme</li>
-<li>Eksik veri kontrolü</li>
-</ul>
-<p>Sıradaki yazıda gerçek bir veri seti indirip Kaggle’dan EDA yapacağım.</p>
+<section id="adım-3-ilk-kodunu-yaz" class="level2">
+<h2 class="anchored" data-anchor-id="adım-3-ilk-kodunu-yaz">Adım 3 — İlk kodunu yaz:</h2>
+<p>Açılan jupyter sayfasında sağ üstte “New” butonuna tıkla → “Python 3 (ipykernel)” seç Yeni bir notebook açılacak. Açılınca şu kodu yapıştır ve Shift + Enter ile çalıştır:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">import</span> pandas as pd</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span> = pd.read_csv<span class="er">(</span><span class="st">"https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"</span><span class="kw">)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">df.head()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ekranda bir tablo belirdecek tebrikler,ilk veri setini yükledin — bu Titanic yolcu verisi.</p>
+<p>Sorun yaşarsan ;</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Veri</span> setini Kaggle<span class="st">'dan indirebilirsin: </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="st">[Titanic Dataset](https://www.kaggle.com/datasets/yasserh/titanic-dataset)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>NOT :</p>
+<p>Pandas = Python kütüphanesi (veri analizi, tablo işlemleri için)</p>
+<p>Jupyter = kod yazıp çalıştırdığın ortam (notebook)</p>
+<p>Yani Pandas’ı kullanmak için bir ortam gerekir; bu ortam Jupyter olabilir, ama klasik .py dosyası (VS Code, PyCharm, terminal) da olabilir. Öğrenirken ve analiz yaparken → Jupyter + Pandas (çok daha rahat) Otomatik bir iş çalıştıracaksan → .py dosyası (Jupyter gerekmez) Yani “Pandas’ı Jupyter ile kullanmalı mıyım?” sorusunun cevabı: Eğer veriyi keşfediyor ve görselleştiriyorsan EVET, eğer bir pipeline yazıyorsan HAYIR (ondan bağımsız olarak Pandas kullanılır).Şu an öğrenme aşamasındaysan → Jupyter ile başla, Pandas kullanmayı öğren.Daha sonra scripte geçersin.</p>
+<p>Sıradaki yazıda bu veriyi analiz edeceğim.</p>
 
 
 </section>

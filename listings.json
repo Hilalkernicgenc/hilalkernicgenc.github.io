@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/eda-analizi/index.html",
       "/posts/pandas-giris/index.html",
       "/posts/listeler-ve-donguler/index.html",
       "/posts/python-temelleri/index.html"

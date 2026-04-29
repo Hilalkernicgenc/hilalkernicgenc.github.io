@@ -91,6 +91,13 @@
     "text": "Bu yazıda öğrendiklerim\n\nListe tanımlama, indexleme, eleman ekleme/silme\nSözlük yapısı ve anahtar-değer erişimi\nfor döngüsü ve enumerate\nList comprehension\n\nSıradaki yazıda Pandas geliyor — artık gerçek veri setleriyle çalışmaya başlıyoruz."
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Başlangıç Seviyesinden Uzmanlığa Adım Adım Veri Bilimi:",
+    "section": "",
+    "text": "Titanic Veri Seti ile İlk Analiz\n\n\n\npython\n\npandas\n\neda\n\nveri-analizi\n\n\n\nKaggle’dan indirdiğim Titanic veri setiyle ilk keşifsel veri analizim.\n\n\n\n\n\nMay 1, 2026\n\n\nHilal Kerniç Genç\n\n\n\n\n\n\n\n\n\n\n\n\nPandas Nedir ve Nasıl Yüklenir?\n\n\n\npython\n\npandas\n\nkurulum\n\n\n\nVeri biliminin vazgeçilmez kütüphanesi Pandas’ı sıfırdan kuruyoruz.\n\n\n\n\n\nApr 30, 2026\n\n\nHilal Kerniç Genç\n\n\n\n\n\n\n\n\n\n\n\n\nPython’da Listeler, Sözlükler ve Döngüler\n\n\n\npython\n\nlisteler\n\ndöngüler\n\n\n\nPandas’a geçmeden önce mutlaka bilinmesi gereken yapılar — listeler, sözlükler ve döngüler.\n\n\n\n\n\nApr 29, 2026\n\n\nHilal Kerniç Genç\n\n\n\n\n\n\n\n\n\n\n\n\nPython’a Giriş: Değişkenler, Tipler ve İlk Gerçek Kod\n\n\n\npython\n\nbaşlangıç\n\nveri-tipleri\n\n\n\nVeri bilimi yolculuğunun ilk yazısı — değişkenler, veri tipleri ve tip dönüşümü.\n\n\n\n\n\nApr 28, 2026\n\n\nHilal Kerniç Genç\n\n\n\n\n\nNo matching items"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "Hilal Kerniç Genç",
@@ -98,52 +105,45 @@
     "text": "Merhaba, ben Hilal.\nVeri Bilimi dünyasına sıfırdan adım atıyorum. Hiç Python bilmeden başladım — şu an değişkenlerle, veri tipleriyle, ve terminalin bana attığı hata mesajlarıyla boğuşuyorum. Bu blogu tam da bu yüzden açtım: öğrendiklerimi belgelemek, hataları saklamadan göstermek ve ilerleyişimi takip etmek için.\nTeknik not defteri gibi düşün bunu. Her yazı gerçek kod, gerçek hata, gerçek öğrenme. Süslü değil, dürüst.\nŞu an çalıştığım konular: Python temelleri → Pandas → istatistik → makine öğrenmesi. Uzun yol, ama belgeliyorum."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Başlangıç Seviyesinden Uzmanlığa Adım Adım Veri Bilimi:",
+    "objectID": "posts/eda-analizi/index.html",
+    "href": "posts/eda-analizi/index.html",
+    "title": "Titanic Veri Seti ile İlk Analiz",
     "section": "",
-    "text": "Pandas’a Giriş: Gerçek Veriyle İlk Adım\n\n\n\npython\n\npandas\n\nveri-analizi\n\n\n\nPandas kütüphanesine giriş — DataFrame, temel işlemler ve ilk veri analizi.\n\n\n\n\n\nApr 30, 2026\n\n\nHilal Kerniç Genç\n\n\n\n\n\n\n\n\n\n\n\n\nPython’da Listeler, Sözlükler ve Döngüler\n\n\n\npython\n\nlisteler\n\ndöngüler\n\n\n\nPandas’a geçmeden önce mutlaka bilinmesi gereken yapılar — listeler, sözlükler ve döngüler.\n\n\n\n\n\nApr 29, 2026\n\n\nHilal Kerniç Genç\n\n\n\n\n\n\n\n\n\n\n\n\nPython’a Giriş: Değişkenler, Tipler ve İlk Gerçek Kod\n\n\n\npython\n\nbaşlangıç\n\nveri-tipleri\n\n\n\nVeri bilimi yolculuğunun ilk yazısı — değişkenler, veri tipleri ve tip dönüşümü.\n\n\n\n\n\nApr 28, 2026\n\n\nHilal Kerniç Genç\n\n\n\n\n\nNo matching items"
+    "text": "İlk veri setini yükledik, şimdi bu veriyi tanıyalım. 891 yolcu, 12 özellik yeni bir hücre aç (Alt + Enter) ve şunu çalıştır:\n# Kaç satır, kaç sütun var?\ndf.shape\nbir alt satıra tıklayalım.\n# Sütunlar ne anlama geliyor, veri tipleri ne?\ndf.info()\n# Sayısal sütunların özeti\ndf.describe()\nŞimdi analiz edelim: 891 yolcu var ve 3 sütunda eksik veri var:\nAge –&gt; 177 eksik –&gt; Yolcuların yaşı bilinmiyor\nCabin –&gt; 687 eksik –&gt; Çok fazla — neredeyse boş\nEmbarked –&gt; 2 eksik –&gt; Az, kolay düzelir\nVeri Temizlemeye Başlayalım 3 farklı strateji var eksik veriler için:\nDoldur → Age gibi sütunlarda ortalama/medyan ile\nSil → Cabin gibi çok boş sütunları\nEn sık değerle doldur → Embarked gibi kategorik sütunlarda\nHadi sırayla yapalım. Yeni hücreye yapıştır:\n# Önce eksikleri sayalım\ndf.isnull().sum()\n# Age → medyan ile doldur (ortalama yerine medyan kullanırız çünkü aykırı değerlere dayanıklı)\ndf['Age'] = df['Age'].fillna(df['Age'].median())\n\n# Cabin → çok boş, silelim\ndf = df.drop(columns=['Cabin'])\n\n# Embarked → en sık değerle doldur\ndf['Embarked'] = df['Embarked'].fillna(df['Embarked'].mode()[0])\n\n# Kontrol edelim — sıfır görmemiz lazım\ndf.isnull().sum()\nİlk veri temizliğini tamamladık! Az önce ne yaptığımıza bakalım:\n177 eksik yaş → medyan ile doldurduk 687 eksik kabin → işe yaramaz, sildik 2 eksik liman → en sık değerle doldurduk\nBu 3 teknik, gerçek projelerin %80’inde karşına çıkacak.\nKadınların hayatta kalma oranı kaç? Erkeklerin? Sence neden bu fark var?\nVeriye bakarak yorum yapmak, veri biliminin en kritik becerisi haydi birlikte yorumlamaya başlayalım.\n\n# Kaç kişi hayatta kaldı?\ndf['Survived'].value_counts()\n# Cinsiyete göre hayatta kalma oranı\ndf.groupby('Sex')['Survived'].mean()\n# Sınıfa göre hayatta kalma — zenginler daha mı şanslıydı?\ndf.groupby('Pclass')['Survived'].mean()\nAz önce şunları yaptık; ✅Veri yükledik ✅ Eksik verileri temizledik ✅ groupby ile analiz yaptık ✅ Veriden anlamlı yorum çıkardık\nBu tam olarak bir veri analistinin günlük işi.\nŞu ana kadar her şey sayıydı. Ama gerçek hayatta bulgularını grafikle sunman gerekiyor — patrona, müşteriye, ekibine. Ancak bu grafiği matplotlib kütüphanesi ile ekleyeceğiz bu sebeple ilk etapta kütüphaneyi yükleyelim.\n!pip install matplotlib\nArdından bu kodu çalıştıralım;\nimport matplotlib.pyplot as plt\n\ndf.groupby(['Pclass', 'Sex'])['Survived'].mean().unstack().plot(\n    kind='bar', \n    figsize=(8,5),\n    title='Sınıf ve Cinsiyete Göre Hayatta Kalma Oranı'\n)\nplt.ylabel('Hayatta Kalma Oranı')\nplt.xticks(rotation=0)\nplt.show()\nBurada önemli olan kodları ezberlemek değil hangi fonksiyon veya kütüphaneyi nerede kullanacağını bilmek bu sebeble ne kadar pratik yaparsan o kadar konuya hakim olursun.\nPandas’ı sindirmeden SQL’e geçersen ikisi birbirine karışır.Bir sonraki yazıda SQL ’ değineceğim."
   },
   {
     "objectID": "posts/pandas-giris/index.html",
     "href": "posts/pandas-giris/index.html",
-    "title": "Pandas’a Giriş: Gerçek Veriyle İlk Adım",
+    "title": "Pandas Nedir ve Nasıl Yüklenir?",
     "section": "",
-    "text": "Pandas, Python’da veri analizi için kullanılan en temel kütüphanedir. Excel’i Python’da çalıştırmak gibi düşünebilirsin — ama çok daha güçlü. Veri biliminde neredeyse her projede kullanılır.\nimport pandas as pd"
+    "text": "Pandas’ı şöyle düşün: Excel’in programlanabilir versiyonu. Binlerce satır veriyi saniyeler içinde analiz edebiliyorsun. Veri okuma, temizleme, filtreleme, gruplama… veri biliminde yaptığın işlerin büyük çoğunluğu Pandas ile yapılır. Önce ortamını kuralım, sonra ilk gerçek veriyi birlikte analiz edeceğiz."
   },
   {
     "objectID": "posts/pandas-giris/index.html#pandas-nedir",
     "href": "posts/pandas-giris/index.html#pandas-nedir",
-    "title": "Pandas’a Giriş: Gerçek Veriyle İlk Adım",
+    "title": "Pandas Nedir ve Nasıl Yüklenir?",
     "section": "",
-    "text": "Pandas, Python’da veri analizi için kullanılan en temel kütüphanedir. Excel’i Python’da çalıştırmak gibi düşünebilirsin — ama çok daha güçlü. Veri biliminde neredeyse her projede kullanılır.\nimport pandas as pd"
+    "text": "Pandas’ı şöyle düşün: Excel’in programlanabilir versiyonu. Binlerce satır veriyi saniyeler içinde analiz edebiliyorsun. Veri okuma, temizleme, filtreleme, gruplama… veri biliminde yaptığın işlerin büyük çoğunluğu Pandas ile yapılır. Önce ortamını kuralım, sonra ilk gerçek veriyi birlikte analiz edeceğiz."
   },
   {
-    "objectID": "posts/pandas-giris/index.html#dataframe-nedir",
-    "href": "posts/pandas-giris/index.html#dataframe-nedir",
-    "title": "Pandas’a Giriş: Gerçek Veriyle İlk Adım",
-    "section": "DataFrame nedir?",
-    "text": "DataFrame nedir?\nDataFrame, satır ve sütunlardan oluşan bir veri tablosudur. Tıpkı Excel’deki bir sayfa gibi.\nimport pandas as pd\n\nveri = {\n    \"isim\": [\"hilal\", \"ali\", \"ayşe\"],\n    \"yas\": [24, 28, 22],\n    \"sehir\": [\"istanbul\", \"ankara\", \"izmir\"]\n}\n\ndf = pd.DataFrame(veri)\nprint(df)"
+    "objectID": "posts/pandas-giris/index.html#adım-1-kurulum",
+    "href": "posts/pandas-giris/index.html#adım-1-kurulum",
+    "title": "Pandas Nedir ve Nasıl Yüklenir?",
+    "section": "Adım 1 — Kurulum",
+    "text": "Adım 1 — Kurulum\nTerminali aç ve yaz:\npip install pandas jupyter"
   },
   {
-    "objectID": "posts/pandas-giris/index.html#temel-işlemler",
-    "href": "posts/pandas-giris/index.html#temel-işlemler",
-    "title": "Pandas’a Giriş: Gerçek Veriyle İlk Adım",
-    "section": "Temel işlemler",
-    "text": "Temel işlemler\n\nVeriyi tanımak\ndf.shape        # (3, 3) — satır, sütun sayısı\ndf.dtypes       # her sütunun tipi\ndf.head()       # ilk 5 satır\ndf.tail()       # son 5 satır\ndf.describe()   # istatistiksel özet\ndf.info()       # genel bilgi\n\n\nSütun seçmek\ndf[\"isim\"]           # tek sütun — Series döner\ndf[[\"isim\", \"yas\"]]  # birden fazla sütun — DataFrame döner\n\n\nSatır filtrelemek\ngencler = df[df[\"yas\"] &lt; 25]\nprint(gencler)\n\n#     isim  yas    sehir\n# 0  hilal   24  istanbul\n# 2   ayşe   22     izmir"
+    "objectID": "posts/pandas-giris/index.html#adım-2-jupyterı-aç",
+    "href": "posts/pandas-giris/index.html#adım-2-jupyterı-aç",
+    "title": "Pandas Nedir ve Nasıl Yüklenir?",
+    "section": "Adım 2 — Jupyter’ı aç:",
+    "text": "Adım 2 — Jupyter’ı aç:\njupyter notebook\nEğer ‘jupyter’ is not recognized hatası alırsan, şunu dene:\npython -m jupyter notebook\nTarayıcında bir sekme açılacak. Oradan “New → Python 3” de ve yeni bir notebook oluştur."
   },
   {
-    "objectID": "posts/pandas-giris/index.html#eksik-veri-kontrolü",
-    "href": "posts/pandas-giris/index.html#eksik-veri-kontrolü",
-    "title": "Pandas’a Giriş: Gerçek Veriyle İlk Adım",
-    "section": "Eksik veri kontrolü",
-    "text": "Eksik veri kontrolü\ndf.isnull().sum()   # her sütundaki eksik değer sayısı\ndf.dropna()         # eksik satırları sil\ndf.fillna(0)        # eksik değerleri 0 ile doldur\n\nVeri temizleme, veri bilimcinin zamanının %80’ini alır. Pandas olmadan bu iş çok daha zor olurdu."
-  },
-  {
-    "objectID": "posts/pandas-giris/index.html#bu-yazıda-öğrendiklerim",
-    "href": "posts/pandas-giris/index.html#bu-yazıda-öğrendiklerim",
-    "title": "Pandas’a Giriş: Gerçek Veriyle İlk Adım",
-    "section": "Bu yazıda öğrendiklerim",
-    "text": "Bu yazıda öğrendiklerim\n\nPandas kurulumu ve import\nDataFrame oluşturma\nshape, dtypes, head(), describe(), info()\nSütun seçme ve satır filtreleme\nEksik veri kontrolü\n\nSıradaki yazıda gerçek bir veri seti indirip Kaggle’dan EDA yapacağım."
+    "objectID": "posts/pandas-giris/index.html#adım-3-ilk-kodunu-yaz",
+    "href": "posts/pandas-giris/index.html#adım-3-ilk-kodunu-yaz",
+    "title": "Pandas Nedir ve Nasıl Yüklenir?",
+    "section": "Adım 3 — İlk kodunu yaz:",
+    "text": "Adım 3 — İlk kodunu yaz:\nAçılan jupyter sayfasında sağ üstte “New” butonuna tıkla → “Python 3 (ipykernel)” seç Yeni bir notebook açılacak. Açılınca şu kodu yapıştır ve Shift + Enter ile çalıştır:\nimport pandas as pd\n\ndf = pd.read_csv(\"https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv\")\n\ndf.head()\nEkranda bir tablo belirdecek tebrikler,ilk veri setini yükledin — bu Titanic yolcu verisi.\nSorun yaşarsan ;\nVeri setini Kaggle'dan indirebilirsin: \n[Titanic Dataset](https://www.kaggle.com/datasets/yasserh/titanic-dataset)\nNOT :\nPandas = Python kütüphanesi (veri analizi, tablo işlemleri için)\nJupyter = kod yazıp çalıştırdığın ortam (notebook)\nYani Pandas’ı kullanmak için bir ortam gerekir; bu ortam Jupyter olabilir, ama klasik .py dosyası (VS Code, PyCharm, terminal) da olabilir. Öğrenirken ve analiz yaparken → Jupyter + Pandas (çok daha rahat) Otomatik bir iş çalıştıracaksan → .py dosyası (Jupyter gerekmez) Yani “Pandas’ı Jupyter ile kullanmalı mıyım?” sorusunun cevabı: Eğer veriyi keşfediyor ve görselleştiriyorsan EVET, eğer bir pipeline yazıyorsan HAYIR (ondan bağımsız olarak Pandas kullanılır).Şu an öğrenme aşamasındaysan → Jupyter ile başla, Pandas kullanmayı öğren.Daha sonra scripte geçersin.\nSıradaki yazıda bu veriyi analiz edeceğim."
   }
 ]
